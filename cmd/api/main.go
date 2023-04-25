@@ -28,6 +28,8 @@ func main() {
 		Sslmode: os.Getenv("POSTGRES_DB_SSL"),
 		TimeZone: os.Getenv("POSTGRES_DB_TIMEZONE"),
 	})
+	db.InitDatabase(db.DB)
+
 
 	r := mux.NewRouter()
 
