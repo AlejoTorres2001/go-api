@@ -10,9 +10,8 @@ import (
 	"github.com/joho/godotenv"
 
 )
-// init is invoked before main()
+
 func init() {
-	// loads values from .env into the system
 	if err := godotenv.Load(); err != nil {
 			log.Print("No .env file found")
 	}
@@ -32,8 +31,6 @@ func main() {
 
 
 	r := mux.NewRouter()
-
-	r.HandleFunc("/", routes.HomeHandler)
-
+	routes.RegisterHandlers(routes.UsersHandlers,routes.UsersSubPath,routes.UsersIdentifierPath,r)
 	http.ListenAndServe(":3000", r)
 }
